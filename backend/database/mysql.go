@@ -27,13 +27,18 @@ func ConnectMysql() (string, *sql.DB) {
 		log.Fatal(err)
 	}
 
-	// Check if the "tickets" table exists
-	if TableExists(db, "tickets") {
-		fmt.Println("The 'tickets' table exists.")
-	} else {
-		fmt.Println("The 'tickets' table does not exist.")
-	}
-
+	/*
+		// Check if the "tickets" table exists
+		if TableExists(db, "tickets") {
+			fmt.Println("The 'tickets' table exists.")
+			return status, db
+		} else {
+			fmt.Println("The 'tickets' table does not exist.")
+			status = "table doesnt exit"
+			return status, nil
+		}
+	*/
+	fmt.Println("Database is on.")
 	return status, db
 }
 

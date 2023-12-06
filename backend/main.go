@@ -20,7 +20,7 @@ func main() {
 	//initiate mysql database
 	status, db := database.ConnectMysql()
 	fmt.Println(status)
-	database.TableExists(db, "tickets")
+	//database.TableExists(db, "tickets")
 
 	// API Router
 	api := gin.Default()
