@@ -4,10 +4,7 @@ FROM golang:1.19.0-alpine AS builder
 RUN apk --no-cache add gcc g++ make
 RUN apk add git
 
-WORKDIR /intel
-
-ENV GO111MODULE=on
-ENV GOFLAGS=-mod=vendor
+WORKDIR /itsm-mvp
 
 #RUN go get -d -v golang.org/x/net/html
 #RUN go install golang.org/x/oauth2@latest
@@ -24,26 +21,23 @@ COPY . ./
 RUN ls -la ./*
 
 # Build
-RUN CGO_ENABLED=0 GOOS=linux go build -o /intel
+RUN CGO_ENABLED=0 GOOS=linux go build -o /itsm-mvp
 
 FROM alpine:latest
 
 RUN apk --no-cache add ca-certificates
 
-ENV GO111MODULE=on
-ENV GOFLAGS=-mod=vendor
+WORKDIR /itsm-mvp
 
-WORKDIR /intel
-
-COPY --from=builder /intel .
+COPY --from=builder /itsm-mvp .
 
 
 # create and set non-root USER
 RUN addgroup -g 1001 docker && \
     adduser -S -u 1001 -G docker docker
 
-RUN chown -R docker:docker /intel && \
-    chmod 755 /intel
+RUN chown -R docker:docker /itsm-mvp && \
+    chmod 755 /itsm-mvp
 
 USER docker:docker
 
