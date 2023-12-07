@@ -1,4 +1,4 @@
-module github.com/shuttlersIT/itsm-mvp
+module github.com/shuttlersIT/itsm-mvp/backend
 
 go 1.21.0
 
