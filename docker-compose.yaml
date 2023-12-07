@@ -12,7 +12,7 @@ services:
       - VIRTUAL_HOST=it.shuttlers.africa
       - LETSENCRYPT_HOST=it.shuttlers.africa
     volumes:
-      - ./backend:/itsm-mvp/backend
+      - .:/itsm-mvp
       - .:/src
       - .:/var/www
     depends_on:
