@@ -5,15 +5,14 @@ services:
     container_name: itsm
     build:
       dockerfile: Dockerfile
-      context: .
+      context: ./backend
     ports:
-      - '127.0.0.1:5151:5151'
-      - '127.0.0.1:5152:5152'
+      - '127.0.0.1:5151:9193'
     environment:
       - VIRTUAL_HOST=it.shuttlers.africa
       - LETSENCRYPT_HOST=it.shuttlers.africa
     volumes:
-      - .:/itsm-v1
+      - ./backend:/itsm-mvp/backend
       - .:/src
       - .:/var/www
     depends_on:
@@ -33,4 +32,4 @@ services:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 5s
-      retries: 10    
+      retries: 10
