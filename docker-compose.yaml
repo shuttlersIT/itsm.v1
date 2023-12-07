@@ -4,10 +4,11 @@ services:
     restart: always
     container_name: itsm
     build:
-      dockerfile: Dockerfile
-      context: ./backend
+      dockerfile: ./backend/Dockerfile
+      context: .
     ports:
-      - '127.0.0.1:5151:9193'
+      - '127.0.0.1:5151:5151'
+      - '127.0.0.1:5152:5152'
     environment:
       - VIRTUAL_HOST=it.shuttlers.africa
       - LETSENCRYPT_HOST=it.shuttlers.africa

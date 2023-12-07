@@ -9,8 +9,8 @@ RUN apk add git
 WORKDIR /itsm-mvp
 
 # Copy only the go.mod and go.sum files to leverage caching
-COPY ../go.mod .
-COPY ../go.sum .
+COPY go.mod .
+COPY go.sum .
 
 RUN go mod tidy
 
